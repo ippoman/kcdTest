@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block body %}
+<ul class="nav justify-content-center">
+  <div style="display:flex;"> 
+ {% if app.user %}
+  <li class="nav-item ms-2">
+    <a class="nav-link btn btn-danger" style="color:white;" href="{{path('app_logout')}}">Déconnexion</a>
+  </li>
+  {% else %}
+     <li class="nav-item ms-2">
+    <a class="nav-link btn btn-primary " style="color:white;" href="{{path('app_login')}}">Connexion</a>
+  </li>
+  {% endif %}
+  <li class="nav-item ms-2">
+    <a class="nav-link btn btn-success px-4" style="color:white;" href="#">Contact</a>
+  </li>
+
+  {% if is_granted('ROLE_ADMIN') %}
+     <li class="nav-item ms-2">
+    <a class="nav-link btn btn-primary px-4" style="color:white;" href="{{path('app_admin')}}">Administration</a>
+  </li>
+    {% endif %}
+  {% if is_granted('ROLE_USER') %}
+     <li class="nav-item ms-2">
+    <a class="nav-link btn btn-info px-4" style="color:white;" href="{{path('app_badge', {'id': app.user.id}) }}">Badge</a>
+  </li>
+  {% endif %}
+  
+ 
+
+  
+  </div>
+</ul>
+
+ <div style="display:flex; justify-content:center;" class="mt-5" >
+    <img src="{{ asset('/images/img/1.jpg') }}" style="width:16em" class="img_homePage">
+    </div>
+
+
+    <style>
+  
+  .img_homePage{
+
+    border: 15em solid tomato;
+    border-radius: 20px;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-name: home_anim;
+ }
+
+ @keyframes home_anim {
+
+     from{
+         border:  solid gray;
+     }
+    15%{
+        border:  solid green;
+     }
+     30%{
+        border:  solid rgb(255, 38, 38);
+     }
+     45%{
+        border: solid lightblue;
+     }
+     60%{
+        border:  solid orange;
+     }
+     75%{
+        border: solid yellow; 
+    }
+     90%{
+        border: solid violet;
+     }
+     to{
+        border: solid black;
+     }
+ }
+
+    
+    
+    
+    
+    </style>
+{% endblock %}

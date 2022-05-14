@@ -1,0 +1,22 @@
+<style>
+
+input{margin-top:10px;}
+label{margin-top:5px;}
+
+
+.vich-image img{
+    width: 20rem;
+    margin-top:20px;
+    margin-right:20px;
+    border:2px solid tomato;
+    border-radius:20px;
+
+}
+
+</style>
+<div class="mx-auto" style="width:80%;">
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-primary ms-4 my-3">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+</div>

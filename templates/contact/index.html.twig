@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler m-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav m-auto">
+        <a class="nav-link btn" href="{{path('app_main')}}">Acceuil</a>
+        <a class="nav-link" href="{{path('app_user_index')}}">Salariées</a>
+        <a class="nav-link" href="{{path('app_car_index')}}">Voitures</a>
+        <a class="nav-link" href="{{path('app_contact_index')}}">Coordonnées</a>
+        <a class="nav-link" href="{{path('app_logout')}}">Deconnexion</a>
+      </div>
+    </div>
+  </div>
+</nav>
+    <h1 class="ms-5 mt-4"> Contact</h1>
+
+    <table class="table mx-auto mt-3" style="width:80%;border:2px solid black">
+        <thead>
+            <tr class="table-secondary">
+                
+                <th>Nom entreprise</th>
+                <th>Adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Téléphone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td class="table-primary">{{ contact.name }}</td>
+            
+                <td class="table-warning">{{ contact.adress }}</td>
+           
+                <td class="table-danger">{{ contact.zipcode }}</td>
+            
+                <td class="table-info">{{ contact.city }}</td>
+           
+                <td class="table-success">{{ contact.phone }}</td>
+           
+                <td class="table-dark">
+                    <a href="{{ path('app_contact_show', {'id': contact.id}) }}" class="btn btn-primary">Fiche</a>
+                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}"class="btn btn-warning">Modifier</a>
+            
+                </td>
+            </tr>
+            
+        {% else %}
+            <tr>
+                <td colspan="7">Pas de contact</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contact_new') }}"class="btn btn-success ms-5">Nouveau</a>
+{% endblock %}
